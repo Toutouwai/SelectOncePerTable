@@ -1,0 +1,58 @@
+<?php namespace ProcessWire;
+
+class SelectOncePerTable extends WireData implements Module {
+
+	/**
+	 * Module information
+	 */
+	public static function getModuleInfo() {
+		return array(
+			'title' => 'Select Once Per Table',
+			'summary' => 'Adds an option to "select" columns in a ProFields Table field so that each option can only be selected once per table.',
+			'version' => '0.1.0',
+			'author' => 'Robin Sallis',
+			'href' => 'https://github.com/Toutouwai/SelectOncePerTable',
+			'icon' => 'arrow-circle-down',
+			'autoload' => 'template=admin',
+			'requires' => 'ProcessWire>=3.0.0, PHP>=5.4.0, FieldtypeTable',
+		);
+	}
+
+	/**
+	 * Ready
+	 */
+	public function ready() {
+		$this->addHookAfter('InputfieldTable::renderReadyHook', $this, 'tableRenderReady');
+	}
+
+	/**
+	 * After InputfieldTable::renderReadyHook
+	 * Add data attribute and assets
+	 *
+	 * @param HookEvent $event
+	 */
+	protected function tableRenderReady(HookEvent $event) {
+		/** @var InputfieldTable */
+		$inputfield = $event->object;
+		$field = $inputfield->hasField;
+		if(!$field) return;
+		
+		$columns = $field->type->getColumns($field);
+		$select_once = [];
+		foreach($columns as $column) {
+			if($column['type'] !== 'pageSelect' && $column['type'] !== 'select') continue;
+			if(empty($column['settings']['selectOnce'])) continue;
+			$select_once[] = $column['name'];
+		}
+		if(empty($select_once)) return;
+		$inputfield->wrapAttr('data-select-once', implode(',', $select_once));
+
+		// Add CSS and JS
+		$config = $this->wire()->config;
+		$info = $this->getModuleInfo();
+		$version = $info['version'];
+		$config->styles->add($config->urls->$this . "$this.css?v=$version");
+		$config->scripts->add($config->urls->$this . "$this.js?v=$version");
+	}
+
+}
