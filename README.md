@@ -14,7 +14,7 @@ So instead of using a Page Reference field like this...
 
 The module ensures that pages/options that are already selected in the Table field are disabled as you add new rows or edit existing rows.
 
-## Configuration and use
+## Configuration
 
 To enable the module for any "Page (Select)" or "Select" column in your Table field, edit the column settings and add `selectOnce=1`.
 
