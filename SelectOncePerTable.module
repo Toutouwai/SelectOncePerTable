@@ -8,8 +8,8 @@ class SelectOncePerTable extends WireData implements Module {
 	public static function getModuleInfo() {
 		return array(
 			'title' => 'Select Once Per Table',
-			'summary' => 'Adds a setting to "select" columns in a ProFields Table field so that each option can only be selected once per table.',
-			'version' => '0.1.0',
+			'summary' => 'Adds a setting to "Select", "Page (Select)" and "Page (Autocomplete Single)" columns in a ProFields Table field so that each option can only be selected once per table.',
+			'version' => '0.2.0',
 			'author' => 'Robin Sallis',
 			'href' => 'https://github.com/Toutouwai/SelectOncePerTable',
 			'icon' => 'arrow-circle-down',
@@ -36,11 +36,11 @@ class SelectOncePerTable extends WireData implements Module {
 		$inputfield = $event->object;
 		$field = $inputfield->hasField;
 		if(!$field) return;
-		
+
 		$columns = $field->type->getColumns($field);
 		$select_once = [];
 		foreach($columns as $column) {
-			if($column['type'] !== 'pageSelect' && $column['type'] !== 'select') continue;
+			if(!in_array($column['type'], ['pageSelect', 'select', 'pageAutocomplete'])) continue;
 			if(empty($column['settings']['selectOnce'])) continue;
 			$select_once[] = $column['name'];
 		}

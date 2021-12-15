@@ -1,6 +1,6 @@
 # Select Once Per Table
 
-Adds an setting to "select" columns in a ProFields Table field so that each option can only be selected once per table. Requires the [ProFields](https://processwire.com/store/pro-fields/) Table module.
+Adds a setting to "Select", "Page (Select)" and "Page (Autocomplete Single)" columns in a ProFields Table field so that each option can only be selected once per table. Requires the [ProFields](https://processwire.com/store/pro-fields/) Table module.
 
 There could be a number of situations where this module might be useful, but perhaps the primary situation is when you want to store extra information for pages that are selected in a Page Reference field.
 
@@ -16,6 +16,6 @@ The module ensures that pages/options that are already selected in the Table fie
 
 ## Configuration
 
-To enable the module for any "Page (Select)" or "Select" column in your Table field, edit the column settings and add `selectOnce=1`.
+To enable the module for any "Select", "Page (Select)" or "Page (Autocomplete Single)" column in your Table field, edit the column settings and add `selectOnce=1`.
 
 ![SelectOncePerTable configuration](https://user-images.githubusercontent.com/1538852/146096637-4c6ba047-5c46-4921-8a14-125de56bdd9a.png)
