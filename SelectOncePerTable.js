@@ -64,7 +64,7 @@
 		});
 
 		// Disable selected options when a relevant select is changed
-		$(document).on('change', '.InputfieldTable[data-select-once] select', function() {
+		$(document).on('change', '.InputfieldTable[data-select-once] select, .InputfieldTable[data-select-once] .InputfieldPageAutocompleteData', function() {
 			disableSelectedOptions($(this).closest('li.InputfieldTable'));
 		});
 

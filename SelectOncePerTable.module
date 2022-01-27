@@ -9,7 +9,7 @@ class SelectOncePerTable extends WireData implements Module {
 		return array(
 			'title' => 'Select Once Per Table',
 			'summary' => 'Adds a setting to "Select", "Page (Select)" and "Page (Autocomplete Single)" columns in a ProFields Table field so that each option can only be selected once per table.',
-			'version' => '0.2.1',
+			'version' => '0.2.2',
 			'author' => 'Robin Sallis',
 			'href' => 'https://github.com/Toutouwai/SelectOncePerTable',
 			'icon' => 'arrow-circle-down',
